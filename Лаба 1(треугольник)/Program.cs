@@ -21,9 +21,6 @@ namespace Лаба_1_треугольник_
         public Edge ab = new Edge();
         public Edge bc = new Edge();
         public Edge ac = new Edge();
-        //public int a;
-        //public int b;
-        //public int c;
     }
     class Program
     {
