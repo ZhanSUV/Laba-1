@@ -10,7 +10,7 @@ namespace Хоар
 {
     class Program
     {
-        //=========CLASS===========
+        //=========CLASS==============
         public class Point
         {
             public double x;
