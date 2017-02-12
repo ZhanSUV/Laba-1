@@ -43,7 +43,7 @@ namespace Хоар
                 this.c = c;
             }
         }
-        //==========METHODS=========
+        //==========METHODS======
         public static double Distance(Edge a)
         {
             return Math.Sqrt(Math.Pow(a.w.x - a.q.x, 2) + Math.Pow(a.w.y - a.q.y, 2));
