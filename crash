@@ -1,1 +1,0 @@
-git filter-branch --tree-filter "rm -rf Laba-1/Лаба 1(треугольник) by Branoli" HEAD
