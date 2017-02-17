@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +28,7 @@ namespace Лаба_1_треугольник_
         }
         public double Side()
         {
-            return Math.Round(Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2)), 0);
+            return Math.Round(Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2)), 1);
         }
     }
     class Triangle
@@ -108,26 +108,21 @@ namespace Лаба_1_треугольник_
                 {
                     points[j] = new Point(Gen.Next(1, 5), Gen.Next(1, 5));
                 }
-                if (points[0] == points[1])
+                while (points[0].X == points[1].X && points[0].Y == points[1].Y || points[1].X == points[2].X && points[1].Y == points[2].Y || points[0].X == points[2].X && points[0].Y == points[2].Y)
                 {
-                    points[0].X++;
-                    points[0].Y++;
-                    if (points[0] == points[2])
+                    for (int b = 0; b < points.Length; b++)
                     {
-                        points[0].X++;
-                        points[0].Y++;
+                        for (int c = 0; c < points.Length; c++)
+                        {
+                            if (points[b].X == points[c].X && points[b].Y == points[c].Y && b != c)
+                            {
+                                points[b].X = Gen.Next(1, 5);
+                                points[b].Y = Gen.Next(1, 5);
+                            }
+                        }
                     }
                 }
-                if (points[1] == points[2])
-                {
-                    points[2].X++;
-                    points[2].Y++;
-                    if (points[2] == points[0])
-                    {
-                        points[2].X++;
-                        points[2].Y++;
-                    }
-                }
+                
                 for (int k = 0; k < edges.Length; k++)
                 {
                     if (k == edges.Length - 1)
@@ -143,13 +138,13 @@ namespace Лаба_1_треугольник_
                 Console.WriteLine("Triangele {0}", i + 1);
                 for (int b = 0; b < points.Length; b++)
                 {
-                    Console.WriteLine(points[b].X + " " + points[b].Y);
+                    Console.WriteLine(points[b].X + " " + points[b].Y + "  " + edges[b].Side());
                 }
                 double perimeter = triangles[i].Perimeter();
                 double area = triangles[i].Area();
                 if (triangles[i].Right())
                 {
-                    sumOfRight += area;
+                    sumOfRight += perimeter;
                 }
                 if (triangles[i].Isosceles())
                 {
