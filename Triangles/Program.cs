@@ -16,16 +16,18 @@ namespace Лаба_1_треугольник_
             Edge[] edges = new Edge[3];
             double sumOfRight = 0;
             double sumOfIsosceles = 0;
+            char[] character = new char[points.Length];
+            character[0] = 'A';
+            character[1] = 'B';
+            character[2] = 'C';
             Triangle[] triangles = new Triangle[10];
             int count = triangles.Length;
             for (int i = 0; i < triangles.Length; i++)
             {           
-                triangles[i] = new Triangle(AddMeasuresOfPoints(points, Gen), AddEdges(edges, points));
+                triangles[i] = new Triangle(AddPoints(points, Gen), AddEdges(edges, points));
                 Console.WriteLine("Triangele {0}", i + 1);
-                for (int b = 0; b < points.Length; b++)
-                {
-                    Console.WriteLine(points[b].X + " " + points[b].Y + "   " + edges[b].Side());
-                }
+                PrintingPoints(points);
+                PrintingSides(edges, character);
                 double perimeter = triangles[i].Perimeter();
                 double area = triangles[i].Area();
                 Console.WriteLine("Perimeter = {0}", perimeter);
@@ -56,11 +58,11 @@ namespace Лаба_1_треугольник_
             Console.WriteLine("Avg sum of isoscele triangle's area = {0}", avgSumOfArea);
             Console.ReadLine();
         }
-        public static Point[] AddMeasuresOfPoints(Point[] points, Random Gen)
+        public static Point[] AddPoints(Point[] points, Random Gen)
         {
             for (int j = 0; j < points.Length; j++)
             {
-                points[j] = new Point(Gen.Next(1, 9), Gen.Next(1, 9));
+                points[j] = new Point(Gen.Next(1, 5), Gen.Next(1, 5));
             }
             while (points[0].X == points[1].X && points[0].Y == points[1].Y || points[1].X == points[2].X && points[1].Y == points[2].Y || points[0].X == points[2].X && points[0].Y == points[2].Y)
             {
@@ -76,7 +78,22 @@ namespace Лаба_1_треугольник_
                     }
                 }
             }
+            if (CheckPoints(points))
+            {
+                AddPoints(points, Gen);
+            }
             return points;
+        }
+        public static bool CheckPoints(Point[] points)
+        {
+            if ((points[0].X - points[2].X) * (points[1].Y - points[2].Y) == (points[1].X - points[2].X) * (points[0].Y - points[2].Y))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public static Edge[] AddEdges(Edge[] edges, Point[] points)
         {
@@ -92,6 +109,27 @@ namespace Лаба_1_треугольник_
                 }
             }
             return edges;
+        }
+        public static void PrintingSides(Edge[] edges, char[] character)
+        {
+            for (int b = 0; b < edges.Length; b++)
+            {
+                if (b == edges.Length - 1)
+                {
+                    Console.WriteLine("Side {0}{1} = {2}", character[b], character[0], edges[b].Side());
+                }
+                else
+                {
+                    Console.WriteLine("Side {0}{1} = {2}", character[b], character[b + 1], edges[b].Side());
+                }
+            }
+        }
+        public static void PrintingPoints(Point[] points)
+        {
+            for (int b = 0; b < points.Length; b++)
+            {
+                Console.WriteLine(points[b].X + " " + points[b].Y);
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Triangles
         }
         public double Side()
         {
-            return Math.Round(Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2)), 0);
+            return Math.Round(Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2)), 1);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Triangles
     class Triangle
     {
         public Point[] points;
-        public Edge[] edges;
+        private Edge[] edges;
         public Triangle(Point[] points, Edge[] edges)
         {
             this.points = points;
@@ -23,20 +23,20 @@ namespace Triangles
             }
             else
             {
-                return true;
+                return false;
             }
         }
         public bool Right()
         {
-            if (Math.Pow(edges[0].Side(), 2) + Math.Pow(edges[1].Side(), 2) == Math.Pow(edges[2].Side(), 2))
+            if (Math.Pow(edges[0].Side(), 2) + Math.Pow(edges[1].Side(), 2) == Math.Round(Math.Pow(edges[2].Side(), 2), 0))
             {
                 return true;
             }
-            else if (Math.Pow(edges[1].Side(), 2) + Math.Pow(edges[2].Side(), 2) == Math.Pow(edges[0].Side(), 2))
+            else if (Math.Pow(edges[1].Side(), 2) + Math.Pow(edges[2].Side(), 2) == Math.Round(Math.Pow(edges[0].Side(), 2), 0))
             {
                 return true;
             }
-            else if (Math.Pow(edges[2].Side(), 2) + Math.Pow(edges[0].Side(), 2) == Math.Pow(edges[1].Side(), 2))
+            else if (Math.Pow(edges[2].Side(), 2) + Math.Pow(edges[0].Side(), 2) == Math.Round(Math.Pow(edges[1].Side(), 2), 0))
             {
                 return true;
             }
