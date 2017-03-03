@@ -16,17 +16,15 @@ namespace Лаба_1_треугольник_
             Edge[] edges = new Edge[3];
             double sumOfRight = 0;
             double sumOfIsosceles = 0;
-            char[] character = new char[points.Length];
-            character[0] = 'A';
-            character[1] = 'B';
-            character[2] = 'C';
+            string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            char[] character = letters.ToCharArray();
             Triangle[] triangles = new Triangle[10];
             int count = triangles.Length;
             for (int i = 0; i < triangles.Length; i++)
-            {           
+            {
                 triangles[i] = new Triangle(AddPoints(points, Gen), AddEdges(edges, points));
-                Console.WriteLine("Triangele {0}", i + 1);
-                PrintingPoints(points);
+                Console.WriteLine("Triangle {0}", i + 1);
+                PrintingPoints(points, character);
                 PrintingSides(edges, character);
                 double perimeter = triangles[i].Perimeter();
                 double area = triangles[i].Area();
@@ -78,13 +76,13 @@ namespace Лаба_1_треугольник_
                     }
                 }
             }
-            if (CheckPoints(points))
+            if (CheckPointsInTheOneStraight(points))
             {
                 AddPoints(points, Gen);
             }
             return points;
         }
-        public static bool CheckPoints(Point[] points)
+        public static bool CheckPointsInTheOneStraight(Point[] points)
         {
             if ((points[0].X - points[2].X) * (points[1].Y - points[2].Y) == (points[1].X - points[2].X) * (points[0].Y - points[2].Y))
             {
@@ -124,11 +122,11 @@ namespace Лаба_1_треугольник_
                 }
             }
         }
-        public static void PrintingPoints(Point[] points)
+        public static void PrintingPoints(Point[] points, char[] character)
         {
             for (int b = 0; b < points.Length; b++)
             {
-                Console.WriteLine(points[b].X + " " + points[b].Y);
+                Console.WriteLine("Point {0} ({1}, {2})", character[b], points[b].X, points[b].Y);
             }
         }
     }
